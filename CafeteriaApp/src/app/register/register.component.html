@@ -1,0 +1,37 @@
+<mat-card class="form-container">
+    <h2>Register</h2>
+    <form method="POST" [formGroup]="registerForm" (ngSubmit)="submit()">
+
+        <mat-form-field class="example-full-width">
+            <input matInput type="text" placeholder="Name" formControlName="Name">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput type="email" placeholder="Email" formControlName="Email">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput type="password" placeholder="Password" formControlName="Password">
+        </mat-form-field>
+        
+        <mat-form-field class="example-full-width">
+            <input matInput type="password" placeholder="Confirm Password" formControlName="ConfirmPassword">
+        </mat-form-field>
+        
+        <div class="form-group">
+            <label for="ImgUrl" class="control-label">Upload Image</label>
+            <input (change)="fileChangeEvent($event)" type="file" name="ImgUrl" class="form-control" >
+
+            <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="4 / 3"
+                format="png"
+                (imageCropped)="imageCropped($event)">
+            </image-cropper>
+        </div>
+        
+        <button #btnRegister [disabled]="!registerForm.valid" class="example-full-width" mat-raised-button color="primary">Register</button>
+        <mat-progress-bar mode="indeterminate" *ngIf="isSubmitted == true"></mat-progress-bar>
+    </form>
+</mat-card>

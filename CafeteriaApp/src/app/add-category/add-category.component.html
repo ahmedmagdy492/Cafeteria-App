@@ -1,0 +1,11 @@
+<mat-card class="form-container">
+    <h2>Create New Category</h2>
+    <form [formGroup]="addCateForm" method="POST" (ngSubmit)="onSubmit()">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Category Name" formControlName="Name" />
+        </mat-form-field>
+        <br>
+        <button #btnSubmit [disabled]="!addCateForm.valid" mat-raised-button color="primary" class="example-full-width">Create Category</button>
+        <mat-progress-bar mode="indeterminate" *ngIf="isSubmitted == true"></mat-progress-bar>
+    </form>
+</mat-card>

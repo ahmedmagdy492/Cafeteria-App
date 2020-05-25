@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~ngx-toastr/toastr';
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap');
+body{
+    margin: 0;    
+    /* background: radial-gradient(#9C27B0, #D500F9); */
+    background-repeat: no-repeat;
+    height: 900px;
+    /* overflow: hidden; */
+}
+*{
+    font-family: 'Cairo', sans-serif;
+}

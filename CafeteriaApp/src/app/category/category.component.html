@@ -1,0 +1,24 @@
+<div style="margin: 50px auto;width: 70%;">
+  <button mat-raised-button (click)="goto()" color="primary">Add Category</button>
+  <table class="mat-elevation-z8" mat-table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef> CategoryName </th>
+          <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element"> 
+              <button mat-raised-button color="primary" (click)="del(element.Id)">Delete</button>
+              <button mat-raised-button (click)="edit(element)">Edit</button>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>    
+  </table>  
+  <div style="text-align: center;width: 100%" *ngIf="isLoaded">
+    <mat-spinner style="margin: auto;font-size: 20px;"></mat-spinner>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<mat-progress-bar mode="indeterminate" *ngIf="isLoaded == false"></mat-progress-bar>
+<form [formGroup]="formFilter" class="container" (ngSubmit)='apply()' style="width: 50%;margin: 50px auto;"> 
+    <mat-form-field style="width: 100%">
+        <mat-label>Select Filter...</mat-label>
+        <mat-select formControlName="filter">
+            <mat-option value="AllOrders">
+                All Orders
+            </mat-option>
+            <mat-option value="Done">
+                Done    
+            </mat-option>
+            <mat-option value="Processing">
+                Processing 
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button #btnFilter style="width: 100%;" mat-raised-button color="primary">Apply</button>    
+    <mat-progress-bar mode="indeterminate" *ngIf="isSubmitted == true"></mat-progress-bar>
+</form>
+<ul class="list-group" *ngFor="let item of allOrders" style="margin: 100px auto;width: 70%;">
+    <li class="list-group-item">
+        <dl>
+            <dt>Order Id: {{item.Id}} <br> Notes: {{item.Notes || "None"}}</dt>
+            <dt>
+              <h3 *ngIf="item.Status == 1" style="color: red;">Processing...</h3>
+              <h3 *ngIf="item.Status == 2" style="color: green;">Done</h3>
+              <button #btnFinish *ngIf="orderFinshed == false && item.Status == 1" (click)="done(item.Id)" mat-raised-button color="primary">Finish Order</button>              
+            </dt>
+        </dl>
+        <div class="row">                
+          <div *ngFor="let nestedItem of item.OrderProducts">
+              <div class="card col3" style="width: 10rem;margin: 20px;">
+                  <img [src]="nestedItem.Product.ImgUrl" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">{{nestedItem.Product.Name}}</h5>                  
+                    <span>Quantity: {{nestedItem.Quantity}}</span> <br>
+                    <span>Total: {{nestedItem.Quantity * nestedItem.Product.Price}} EGP</span>                  
+                  </div>
+                </div>            
+          </div>        
+      </div>
+    </li>
+  </ul>
+  <h3 *ngIf="allOrders.length == 0" style="margin: 150px;text-align: center;color: #808080">No Orders Yet</h3>

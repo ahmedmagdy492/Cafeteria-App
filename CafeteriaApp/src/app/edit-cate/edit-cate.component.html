@@ -1,0 +1,8 @@
+<h2>Edit Category</h2>
+<form method="POST" [formGroup]="editForm">
+    <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="Name" formControlName="Name">
+    </mat-form-field>
+    <button mat-raised-button color="warn" (click)="save()">Save</button>
+    <button mat-raised-button color="primary" (click)="cancel()">Cancel</button>    
+</form>

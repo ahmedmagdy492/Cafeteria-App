@@ -1,0 +1,38 @@
+<div style="overflow: auto;">
+    <mat-card class="form-container">
+        <form method="POST" enctype="multipart/form-data" [formGroup]="addProdForm" (ngSubmit)="onSubmit()">
+    
+            <mat-form-field class="full-width">
+                <input matInput type="text" placeholder="Product Name" formControlName="Name" />
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput type="number" placeholder="Product Price" formControlName="Price" />
+            </mat-form-field>
+    
+            <mat-form-field class="full-width">
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="CategoryId">
+                    <mat-option *ngFor="let cate of categories" [value]="cate.Id">
+                        {{cate.Name}}
+                      </mat-option>
+                </mat-select>
+            </mat-form-field>
+    
+            <div class="full-width form-group">
+                <input type="file" class="form-control" (change)="fileChangeEvent($event)" placeholder="Product Image" />
+    
+                <image-cropper
+                    [imageChangedEvent]="imageChangedEvent"
+                    [maintainAspectRatio]="true"
+                    [aspectRatio]="4 / 3"
+                    format="png"
+                    (imageCropped)="imageCropped($event)">
+                </image-cropper>
+            </div>
+            
+            <button #btnSave [disabled]="!addProdForm.valid" mat-raised-button color="primary" class="full-width">Create Product</button>
+            <mat-progress-bar mode="indeterminate" *ngIf="isSubmitted == true"></mat-progress-bar>
+        </form>
+    </mat-card>
+</div>

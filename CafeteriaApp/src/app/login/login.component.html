@@ -1,0 +1,16 @@
+<mat-card class="form-container">
+    <h2>Login</h2>
+    <form method="POST" enctype="application/x-www-form-urlencoded" [formGroup]="loginForm" (ngSubmit)="submit()">        
+        <mat-form-field class="example-full-width">
+            <input matInput type="email" placeholder="Username" formControlName="Username">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput type="password" placeholder="Password" formControlName="Password">
+        </mat-form-field>        
+
+        <button #btnLogin [disabled]="!loginForm.valid" class="example-full-width" mat-raised-button color="primary">Login</button>
+        <mat-progress-bar mode="indeterminate" *ngIf="isSubmitted == true"></mat-progress-bar>
+    </form>
+</mat-card>
+
