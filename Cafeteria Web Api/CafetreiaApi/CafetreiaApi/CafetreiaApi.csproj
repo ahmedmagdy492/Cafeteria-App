@@ -238,6 +238,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -254,6 +255,10 @@
     <Compile Include="Migrations\202005250000139_addedOrderStatusToOrderModel.Designer.cs">
       <DependentUpon>202005250000139_addedOrderStatusToOrderModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005271446203_changeIsAvailablePropInProductToNotNull.cs" />
+    <Compile Include="Migrations\202005271446203_changeIsAvailablePropInProductToNotNull.Designer.cs">
+      <DependentUpon>202005271446203_changeIsAvailablePropInProductToNotNull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -267,9 +272,11 @@
     <Compile Include="Repository\IMainRepository.cs" />
     <Compile Include="Repository\IOrderRepository.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
+    <Compile Include="Repository\IUserRepository.cs" />
     <Compile Include="Repository\MainRepository.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="UtilityClasses\Base64.cs" />
@@ -374,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005250000139_addedOrderStatusToOrderModel.resx">
       <DependentUpon>202005250000139_addedOrderStatusToOrderModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005271446203_changeIsAvailablePropInProductToNotNull.resx">
+      <DependentUpon>202005271446203_changeIsAvailablePropInProductToNotNull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

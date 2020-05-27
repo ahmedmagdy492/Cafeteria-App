@@ -41,17 +41,17 @@ namespace CafetreiaApi.Repository
 
         public async Task<IEnumerable<Order>> GetAllOrders()
         {
-            return await db.Orders.Include("OrderProducts").Include("OrderProducts.Product").ToListAsync();
+            return await db.Orders.Include("User").Include("OrderProducts").Include("OrderProducts.Product").ToListAsync();
         }
 
         public async Task<IEnumerable<Order>> GetDoneOrders()
         {
-            return await db.Orders.Include("OrderProducts").Include("OrderProducts.Product").Where(order => order.Status == OrderStatus.Done).ToListAsync();
+            return await db.Orders.Include("User").Include("OrderProducts").Include("OrderProducts.Product").Where(order => order.Status == OrderStatus.Done).ToListAsync();
         }
 
         public async Task<IEnumerable<Order>> GetProcessingOrders()
         {
-            return await db.Orders.Include("OrderProducts").Include("OrderProducts.Product").Where(order => order.Status == OrderStatus.Processing).ToListAsync();
+            return await db.Orders.Include("User").Include("OrderProducts").Include("OrderProducts.Product").Where(order => order.Status == OrderStatus.Processing).ToListAsync();
         }
 
         public async Task<Order> FindOrder(int id)

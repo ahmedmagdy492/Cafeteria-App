@@ -1,16 +1,10 @@
 <mat-progress-bar mode="indeterminate" *ngIf="isSubmitted == true"></mat-progress-bar>
-<div class="container mt-5">
-    <button mat-raised-button color="primary" *ngIf="auth.isAdmin" (click)="goto()">Create Product</button>
-    <h2 class="mt-3">Latest Products</h2>    
+<div class="container mt-5">    
 
-    <div class="row">              
-        <input class="col-8 m-4" #search type="search" placeholder="Search..." class="form-control" name="search" (keyup.enter)="go()">                              
-  </div>    
-
-    <div class="row" *ngIf="auth.isAuthenticated && !auth.isAdmin">
+    <div class="row" *ngIf="auth.isAuthenticated && auth.isAdmin">
       <div class="row col-8">            
-        <div *ngIf="products.length == 0 && isLoaded == false" class="mt-4 col-12">
-          <h3 style="color: #808080;text-align: center;">No Products Yet</h3>
+        <div *ngIf="products.length == 0 && isLoaded == false" class="text-info mt-4 col-12">
+          <h3 style="text-align: center;">No Products Yet</h3>
         </div>
         <div class="mt-3" style="text-align: center;width: 100%" *ngIf="isLoaded">
           <mat-spinner style="margin: auto;"></mat-spinner>
@@ -23,12 +17,6 @@
                   <p class="card-text">Price {{ product.Price }}.00 EGP</p>
 
                   <div *ngIf="auth.isAdmin">
-                    <button mat-raised-button color="primary" (click)="edit(product)" class="mr-2">Edit</button>
-                    <button class="mr-2" mat-raised-button color="warn" (click)="del(product)" >Delete</button>
-                    <button class="btn btn-info" (click)="avail($event, product)">{{product.IsAvailable == true ? "Avail" : "UnAvail"}}</button>                
-                  </div>
-
-                  <div *ngIf="!auth.isAdmin">
                     <span *ngIf="product.IsAvailable == true">
                         <button class="mr-2" mat-raised-button (click)="addToCart({product: product, quantity: 1})" color="primary">+</button>
                       <button class="mr-2" mat-raised-button (click)="removeFromCart({product: product, quantity: 1})" color="warn">-</button>
@@ -42,13 +30,18 @@
               </div>
           </div>
       </div>
-      <div class="col-4 card" style="padding: 10px;overflow: auto;position: sticky;left: 800px;top: 220px;height: 300px;" >
+      <div class="col-4 card" style="padding: 10px;overflow: auto;position: sticky;left: 800px;top: 220px;height: 500px;" >
         <span class="m-3" #total id="total">Total: {{totalAmount}} EGP</span>
         <span class="m-3">          
           <button (click)="clear()" class="ml-2 btn btn-danger" [disabled]="cart.length == 0">Clear</button>
         </span>
         <div>                    
-          <form [formGroup]="cartForm" (ngSubmit)="go()">
+          <form [formGroup]="cartForm" (ngSubmit)="go()">            
+            <mat-form-field style="margin: 10px;width: 90%;">
+                <mat-select formControlName="User" placeholder="Select User...">
+                    <mat-option [value]="user.Id" *ngFor="let user of users">{{user.Name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
             <mat-form-field style="margin: 10px;width: 90%;">
               <textarea matInput appearance="fill" formControlName="Notes" placeholder="Notes...">
               </textarea>
@@ -67,33 +60,7 @@
               </div>                       
             </form>
         </div>              
-    </div>    
-    
-  </div>
-    <div class="row" *ngIf="auth.isAuthenticated && auth.isAdmin">
-      <div *ngIf="products.length == 0 && isLoaded == false" class="text-info mt-4 col-12">
-        <h3 style="text-align: center;">No Products Yet</h3>
-      </div>
-      <div class="col-4 mt-4" *ngFor="let product of products">
-          <div class="card" style="width: 18rem;">
-              <img [src]="product.ImgUrl" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">{{product.Name}}</h5>
-                <p class="card-text">Price {{ product.Price }}.00 EGP</p>
-
-                <div *ngIf="auth.isAdmin">
-                  <button mat-raised-button color="primary" (click)="edit(product)" class="mr-2">Edit</button>
-                  <button class="mr-2" mat-raised-button color="warn" (click)="del(product)" >Delete</button>
-                  <button class="btn btn-info" (click)="avail($event, product)">{{product.IsAvailable == true ? "Avail" : "UnAvail"}}</button>                
-                </div>
-
-                <div *ngIf="!auth.isAdmin">
-                  <button class="mr-2" mat-raised-button color="primary">+</button>
-                  <button class="mr-2" mat-raised-button color="warn">-</button>
-                </div>
-
-              </div>
-            </div>
-        </div>
+    </div>              
 
 </div>
+

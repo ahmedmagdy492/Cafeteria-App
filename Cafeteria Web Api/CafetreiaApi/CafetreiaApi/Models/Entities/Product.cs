@@ -18,7 +18,7 @@ namespace CafetreiaApi.Models.Entities
         public string Name { get; set; }
         public string ImgUrl { get; set; }
         public double Price { get; set; }
-        public bool? IsAvailable { get; set; }
+        public bool IsAvailable { get; set; }
 
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }

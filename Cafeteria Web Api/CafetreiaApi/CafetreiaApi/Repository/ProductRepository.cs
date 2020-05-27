@@ -25,7 +25,7 @@ namespace CafetreiaApi.Repository
 
         public async Task Available(Product product)
         {
-            product.IsAvailable = !product.IsAvailable.Value;
+            product.IsAvailable = !product.IsAvailable;
             db.Entry(product).State = EntityState.Modified;
             await db.SaveChangesAsync();
         }

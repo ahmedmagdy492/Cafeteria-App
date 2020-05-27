@@ -1,12 +1,13 @@
 <mat-toolbar style="display: flex;justify-content: space-between;">
     <div style="display: flex;justify-content: center;">        
-        <button style="font-weight: bold;" mat-button routerLink="">
-            Cafeteria App
+        <button style="font-family:Arial, Helvetica, sans-serif !important;" mat-button routerLink="">
+            <b>Cafeteria App</b>
         </button>
         <button *ngIf="auth.isAuthenticated && auth.isAdmin" mat-button routerLink="categories">Categories</button>
         <button *ngIf="auth.isAuthenticated && auth.isAdmin" mat-button routerLink="products">Products</button>
         <button *ngIf="auth.isAuthenticated && !auth.isAdmin" mat-button routerLink="products">Orders</button>
         <button *ngIf="auth.isAuthenticated && auth.isAdmin" mat-button routerLink="orders">Orders</button>
+        <button *ngIf="auth.isAuthenticated && auth.isAdmin" mat-button routerLink="manualorders">Manual Orders</button>        
         <button *ngIf="auth.isAuthenticated && !auth.isAdmin" mat-button routerLink="myorders">My Orders</button>
     </div>
 

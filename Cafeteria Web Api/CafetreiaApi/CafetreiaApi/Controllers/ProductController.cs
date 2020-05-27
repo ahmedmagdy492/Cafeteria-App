@@ -72,7 +72,8 @@ namespace CafetreiaApi.Controllers
         [Authorize(Roles = "Admin")]
         // POST api/Product
         public async Task<IHttpActionResult> Post([FromBody]Product product)
-        {            
+        {
+            product.IsAvailable = true;
             if (!ModelState.IsValid) return BadRequest(ModelState);
             Image img = Base64.Base64Decode(product.ImgUrl);
             var mappedPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Content/imgs");

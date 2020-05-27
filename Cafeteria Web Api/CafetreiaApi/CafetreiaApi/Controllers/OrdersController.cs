@@ -25,7 +25,7 @@ namespace CafetreiaApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Order([FromBody]List<OrderProducts> products,[FromUri]string Notes)
+        public async Task<IHttpActionResult> Order([FromBody]List<OrderProducts> products, [FromUri]string Notes)
         {
             var order = new Order
             {

@@ -267,3 +267,4 @@ F:\testing projects\Cafeteria\Cafeteria Web Api\CafetreiaApi\CafetreiaApi\obj\De
 F:\testing projects\Cafeteria\Cafeteria Web Api\CafetreiaApi\CafetreiaApi\obj\Debug\CafetreiaApi.dll
 F:\testing projects\Cafeteria\Cafeteria Web Api\CafetreiaApi\CafetreiaApi\obj\Debug\CafetreiaApi.pdb
 F:\testing projects\Cafeteria\Cafeteria Web Api\CafetreiaApi\CafetreiaApi\obj\Debug\CafetreiaApi.Migrations.addedOrderStatusToOrderModel.resources
+F:\testing projects\Cafeteria\Cafeteria Web Api\CafetreiaApi\CafetreiaApi\obj\Debug\CafetreiaApi.Migrations.changeIsAvailablePropInProductToNotNull.resources

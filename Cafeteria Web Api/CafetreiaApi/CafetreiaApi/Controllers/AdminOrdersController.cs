@@ -2,6 +2,7 @@
 using CafetreiaApi.Repository;
 using CafetreiaApi.UtilityClasses;
 using CafetreiaApi.ViewModels;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,7 +51,7 @@ namespace CafetreiaApi.Controllers
             return Ok("Done");
         }
 
-        [HttpPost]        
+        [HttpPost]
         public async Task<IHttpActionResult> Filter([FromBody]Filter filter)
         {
             IEnumerable<Order> orders = null;
@@ -77,6 +78,30 @@ namespace CafetreiaApi.Controllers
                 }
             }
             return Ok(orders);
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> SubmitOrder([FromBody]List<OrderProducts> products,[FromUri] string Notes, [FromUri]string userId)
+        {
+            var order = new Order
+            {
+                UserId = userId,
+                Status = OrderStatus.Processing,
+                Notes = Notes
+            };
+
+            orderRepository.AddOrder(order);
+            await orderRepository.Commit();
+            foreach (OrderProducts product in products)
+            {
+                product.ProductId = product.Product.Id;
+                product.Product = null;
+                product.OrderId = order.Id;
+                product.OrderDate = DateTime.Now;                
+                orderRepository.AddOrderProduct(product);
+            }
+            await orderRepository.Commit();
+            return Ok("Added Successfully");
         }
 
     }

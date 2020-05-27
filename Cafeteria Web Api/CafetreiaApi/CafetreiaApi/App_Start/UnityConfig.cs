@@ -48,6 +48,7 @@ namespace CafetreiaApi
             container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IMainRepository<Category>, MainRepository<Category>>();
             container.RegisterType<IOrderRepository, OrderRepository>();
+            container.RegisterType<IUserRepository, UserRepository>();
         }
     }
 }

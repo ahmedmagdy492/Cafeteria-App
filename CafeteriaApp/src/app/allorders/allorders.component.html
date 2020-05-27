@@ -20,7 +20,7 @@
 <ul class="list-group" *ngFor="let item of allOrders" style="margin: 100px auto;width: 70%;">
     <li class="list-group-item">
         <dl>
-            <dt>Order Id: {{item.Id}} <br> Notes: {{item.Notes || "None"}}</dt>
+            <dt>Order Id: {{item.Id}} <br> Notes: {{item.Notes || "None"}} <br> User: {{item.User.Name}} </dt>
             <dt>
               <h3 *ngIf="item.Status == 1" style="color: red;">Processing...</h3>
               <h3 *ngIf="item.Status == 2" style="color: green;">Done</h3>

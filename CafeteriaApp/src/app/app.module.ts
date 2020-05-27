@@ -38,6 +38,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatTreeModule } from '@angular/material/tree';
 import { MyordersComponent } from './myorders/myorders.component';
 import { AllordersComponent } from './allorders/allorders.component';
+import { ManualordersComponent } from './manualorders/manualorders.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { AllordersComponent } from './allorders/allorders.component';
     UpdateproductComponent,
     SidebarComponent,
     MyordersComponent,
-    AllordersComponent
+    AllordersComponent,
+    ManualordersComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +76,7 @@ import { AllordersComponent } from './allorders/allorders.component';
       {path: 'products', component: ProductsComponent},
       {path: 'myorders', component: MyordersComponent},
       {path: 'orders', component: AllordersComponent},
+      {path: 'manualorders', component: ManualordersComponent},
       {path: '**', component: HomeComponent}
     ]),
     MatInputModule, MatCardModule, MatButtonModule, MatToolbarModule,

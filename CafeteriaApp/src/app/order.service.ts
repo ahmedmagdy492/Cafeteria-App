@@ -24,6 +24,12 @@ export class OrderService {
     return this.http.post(`${this.url}?Notes=${Notes}`, products, {headers: this.header});
   }
 
+  submitManaulOrder(products : OrderItem[], Notes : string, userId : string)
+  {
+    const internalUrl = "https://localhost:44314/api/AdminOrders";
+    return this.http.post(`${internalUrl}?Notes=${Notes}&userId=${userId}`, products, {headers: this.header});
+  }
+
   getMyOrders()
   {
     return this.http.get(this.url, {headers: this.header});
