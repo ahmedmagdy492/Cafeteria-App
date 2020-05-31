@@ -1,0 +1,48 @@
+<mat-card class="container mt-4">
+    <h3>Checks</h3>
+    <div>
+        <form [formGroup]="checksForm" (ngSubmit)="getChecks()">
+            <div class="flex-container">
+                <mat-form-field class="half-width m-1">
+                    <input type="date" matInput formControlName="fromDate" placeholder="Date From">
+                </mat-form-field>
+                <mat-form-field class="half-width m-1">
+                    <input type="date" matInput formControlName="toDate" placeholder="Date To">
+                </mat-form-field>
+            </div>
+            <mat-form-field class="w-100" style="display: flex;justify-content: center;">
+                <mat-select #select formControlName="User" placeholder="Select User ....">
+                    <mat-option *ngFor="let user of allUsers" [value]="user.Id">{{user.Name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="w-100" style="display: flex;justify-content: center;">
+                <button class="half-width" #btnSubmit [disabled]="!checksForm.valid" mat-raised-button color="primary">Get Checks</button>
+            </div>
+            <div class="w-100" style="display: flex;justify-content: center;">
+                <mat-progress-bar class="half-width" mode="indeterminate" *ngIf="isSubmitted == true"></mat-progress-bar>
+            </div>
+        </form>
+    </div>
+</mat-card>
+
+<div class="container mt-5">    
+    <div class="card" *ngFor="let item of allChecks">
+        <mat-card>
+            <div>
+                <h3>{{item.User.Name}}</h3>
+                <div class="row">
+                    <div *ngFor="let op of item.OrderProducts" class="col-md-3 card m-3">
+                        <span>{{op.OrderDate}} </span> 
+                        <b>Total Amount: {{op.Quantity * op.Product.Price}} EGP</b>
+                        <div>
+                            <h3>{{op.Product.Name}}</h3>
+                            <p>Price: {{op.Product.Price}}</p>
+                            <p>Quantity: {{op.Quantity}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </mat-card>
+    </div>
+    <h3 style="text-align: center;" *ngIf="allChecks.length == 0">No Checks</h3>
+</div>

@@ -39,6 +39,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MyordersComponent } from './myorders/myorders.component';
 import { AllordersComponent } from './allorders/allorders.component';
 import { ManualordersComponent } from './manualorders/manualorders.component';
+import { ChecksComponent } from './checks/checks.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { ManualordersComponent } from './manualorders/manualorders.component';
     SidebarComponent,
     MyordersComponent,
     AllordersComponent,
-    ManualordersComponent
+    ManualordersComponent,
+    ChecksComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +75,7 @@ import { ManualordersComponent } from './manualorders/manualorders.component';
       {path: 'register', component: RegisterComponent},
       {path: 'login', component: LoginComponent},
       {path: 'add-product', component: AddProductComponent, canActivate: [AuthGuard]},
+      {path: 'checks', component: ChecksComponent, canActivate: [AuthGuard]},
       {path: 'products', component: ProductsComponent},
       {path: 'myorders', component: MyordersComponent},
       {path: 'orders', component: AllordersComponent},

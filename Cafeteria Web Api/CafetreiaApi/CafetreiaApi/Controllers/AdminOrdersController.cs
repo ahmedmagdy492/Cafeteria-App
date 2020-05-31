@@ -47,6 +47,7 @@ namespace CafetreiaApi.Controllers
         {
             var order = await orderRepository.FindOrder(id);
             if (order == null) return NotFound();
+            order.OrderProducts = null;
             await orderRepository.FinishOrder(order);
             return Ok("Done");
         }
@@ -95,6 +96,7 @@ namespace CafetreiaApi.Controllers
             foreach (OrderProducts product in products)
             {
                 product.ProductId = product.Product.Id;
+                product.Order = null;
                 product.Product = null;
                 product.OrderId = order.Id;
                 product.OrderDate = DateTime.Now;                

@@ -21,7 +21,7 @@ using System.IO;
 
 namespace CafetreiaApi.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
@@ -320,9 +320,9 @@ namespace CafetreiaApi.Controllers
             return logins;
         }
 
-        // POST api/Account/Register
-        [AllowAnonymous]
+        // POST api/Account/Register        
         [Route("Register")]
+        [AllowAnonymous]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
             if (!ModelState.IsValid)

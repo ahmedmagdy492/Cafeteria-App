@@ -15,7 +15,7 @@ export class ProductService {
     this.header = {
       Authorization: 'Bearer ' + obj.access_token,
       role: obj.role
-    }    
+    }
   }
 
   addProduct(product)

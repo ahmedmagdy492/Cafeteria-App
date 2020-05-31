@@ -5,6 +5,7 @@
         </button>
         <button *ngIf="auth.isAuthenticated && auth.isAdmin" mat-button routerLink="categories">Categories</button>
         <button *ngIf="auth.isAuthenticated && auth.isAdmin" mat-button routerLink="products">Products</button>
+        <button *ngIf="auth.isAuthenticated && auth.isAdmin" mat-button routerLink="checks">Checks</button>
         <button *ngIf="auth.isAuthenticated && !auth.isAdmin" mat-button routerLink="products">Orders</button>
         <button *ngIf="auth.isAuthenticated && auth.isAdmin" mat-button routerLink="orders">Orders</button>
         <button *ngIf="auth.isAuthenticated && auth.isAdmin" mat-button routerLink="manualorders">Manual Orders</button>        

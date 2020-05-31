@@ -1,7 +1,7 @@
 using CafetreiaApi.Models.Entities;
 using CafetreiaApi.Repository;
 using System;
-
+using System.Diagnostics.Contracts;
 using Unity;
 
 namespace CafetreiaApi
@@ -49,6 +49,7 @@ namespace CafetreiaApi
             container.RegisterType<IMainRepository<Category>, MainRepository<Category>>();
             container.RegisterType<IOrderRepository, OrderRepository>();
             container.RegisterType<IUserRepository, UserRepository>();
+            container.RegisterType<IChecksRepository, ChecksRepository>();
         }
     }
 }
