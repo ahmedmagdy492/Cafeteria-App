@@ -52,4 +52,10 @@ export class OrderService {
     const internalUrl = 'https://localhost:44314/api/AdminOrders';
     return this.http.post(internalUrl , filter, {headers: this.header});
   }
+
+  filterWithDate(fromDate : string, toDate : string)
+  {
+    const internalPath = `https://localhost:44314/api/Orders?fromDate=${fromDate}&toDate=${toDate}`;
+    return this.http.get(internalPath, {headers: this.header});
+  }
 }

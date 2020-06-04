@@ -65,5 +65,24 @@ namespace CafetreiaApi.Repository
             db.Entry<Order>(order).State = EntityState.Modified;
             await Commit();
         }
+
+        public async Task<IEnumerable<Order>> FilterbyDate(string fromDate, string toDate, string userId)
+        {
+            DateTime fromDt = Convert.ToDateTime(fromDate);
+            DateTime toDt = Convert.ToDateTime(toDate);
+            var allOrders = await db.Orders.Include("OrderProducts").Where(o => o.UserId == userId).ToListAsync();
+            List<Order> filteredOrders = new List<Order>();
+            foreach(var order in allOrders)
+            {
+                foreach(var orderProd in order.OrderProducts)
+                {
+                    if(orderProd.OrderDate >= fromDt && orderProd.OrderDate <= toDt)
+                    {
+                        filteredOrders.Add(order);
+                    }
+                }
+            }
+            return filteredOrders;
+        }
     }
 }

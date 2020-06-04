@@ -18,5 +18,6 @@ namespace CafetreiaApi.Repository
         Task<IEnumerable<Order>> GetProcessingOrders();
         Task<Order> FindOrder(int id);
         Task FinishOrder(Order order);
+        Task<IEnumerable<Order>> FilterbyDate(string fromDate, string toDate, string userId);
     }
 }

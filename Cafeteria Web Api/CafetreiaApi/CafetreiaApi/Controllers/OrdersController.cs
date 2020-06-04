@@ -67,5 +67,23 @@ namespace CafetreiaApi.Controllers
             return Ok(myOrders);
         }
 
+        [HttpGet]
+        public async Task<IHttpActionResult> FilterByDate([FromUri]string fromDate, [FromUri]string toDate)
+        {
+            if (fromDate == null || toDate == null) return BadRequest("Invalid Date");
+            var currentUserId = User.Identity.GetUserId();
+            var filteredOrders = await orderRepository.FilterbyDate(fromDate, toDate, currentUserId);
+            foreach (var order in filteredOrders)
+            {
+                foreach (var op in order.OrderProducts)
+                {
+                    if (op.Product.ImgUrl.Length == 40)
+                    {
+                        op.Product.ImgUrl = Base64.GetImage(op.Product.ImgUrl);
+                    }
+                }
+            }
+            return Ok(filteredOrders);
+        }
     }
 }
